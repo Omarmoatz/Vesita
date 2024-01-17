@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div dir="rtl">
+    <!-- Search -->
+    <div class="catagory_area ">
+<div class="container " style="margin-top: 10rem">
+            <div class=" single_text">
+                <h2>احجز مع
+                    أفضل دكتور في مصر</h3>
+                <h3>احجز اونلاين او كلم  ١٧٧٥۸</h4>
+                <h4>١٦٠٠٠ دكتور -٤٠٠٠ استاذ واستشاري - اكثر من ۲٠ تخصص</h5>
+                <br>
+            </div>
+            <form  method="GET" action="">
+            <div class="row cat_search" >
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="single_input">
+                        <input type="text" placeholder="إسم الدكتور" >
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="single_input">
+                        <select class="wide" >
+                            <option value="" >الموقع</option>
+                            <option value="المنصوره">المنصوره</option>
+                            <option value="الدقي">الدقي</option>
+                            <option value="4">Sylet</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="single_input">
+                        <select class="wide" >
+                            <option value="">التخصص</option>
+                            <option value="{{doctor_list.specialty}}">{{doctor_list.specialty}}</option>
+                            </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12">
+                    <div class="job_btn">
+                        <input type="submit" class="boxed-btn3" value="ابحث هنا">
+                    </div>
+                </div>
+
+            </div>
+            </form> 
+        </div>
+    </div>
+    <!-- endsearch -->
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area">
+        <div class="container">
+
+            <div class="job_lists">
+                <div class="row">
+                    
+                    {% for item in doctor_list %}   
+                        <div class="col-lg-11 col-md-10" style="height: 16rem;" >
+                            <div class="single_jobs white-bg d-flex justify-content-between">
+                                <div class="jobs_left d-flex align-items-center">
+                                    <div >                                        
+                                            <img  src="{{item.image.url}}" alt="" width="100" height="100">        
+                                    </div>
+                                    <div class="jobs_conetent">
+                                        <a href=""><h5>{{item}} </h5></a>
+                                        <h6>{{item.subtitle}}</h6>
+                                        
+                                        <div class="links_locat">
+                                            <div class="location">
+                                                <p> <i class="fas fa-briefcase-medical"></i> دكتور <span style="color: blue;">{{item}}</span> متخصص في <span style="color: blue;">{{item.specialty}}</span></p>
+                                                <p> <i class="fa fa-map-marker"></i>address : {{item.address}}</p>
+                                                <p> <i class="fa fa-map-marker"></i> الكشف : <span style="color: blue;">{{item.price_of_appintment}}</span> جنية</p>
+                                                <p> <i class="fa fa-clock-o"></i> مدة الانتظار : <span style="color: blue;">Waiting_time</span> ساعه</p>
+                                                <p> <i class="fa fa-clock-o"></i> عدد ساعات العمل : <span style="color: blue;">{{item.work_hours}}</span> ساعه</p>
+                                                <p> <i class="fa fa-clock-o"></i>سعر المكالمه العادية  :<span style="color: blue;"> {{item.phone_num}} </span>  </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jobs_right">
+                                    <div class="apply_now">
+                                        <a class="boxed-btn3" href="">حجز كشف</a>
+                                    </div>
+
+                                    <div class="rating">
+                                        <div class="text-warning">
+                                            <!-- to make image category for clinic image -->
+                                            <i class="{% if item.doctor_review > 0 %}fa fa-star{% endif %}"></i>
+                                            <i class="{% if item.doctor_review > 1 %}fa fa-star{% endif %}"></i>
+                                            <i class="{% if item.doctor_review > 2 %}fa fa-star{% endif %}"></i>
+                                            <i class="{% if item.doctor_review > 3 %}fa fa-star{% endif %}"></i>
+                                            <i class="{% if item.doctor_review > 4 %}fa fa-star{% endif %}"></i>
+                                            </div>
+                                        <div class="rating" >
+                                            <h5>تقييم الدكتور</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+</div>
+    <!-- featured_candidates_area_start  -->
+    <div class="featured_candidates_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-40">
+                        <h3>المرشحين المميزين</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="candidate_active owl-carousel">
+                        <div class="single_candidates text-center">
+                            <div class="thumb">
+                                <img class="img-circle " src="img/candiateds/2.png" alt="" >
+                                
+                            </div>
+                            <a href="" ><h4 >الاسم</h4></a>
+                            <p>  التخصص</p>
+                            <div class="best-rating">
+                                <div class="text-warning">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        
+                                </div>
+                                <div class="best-rating" >
+                                    <h5>تقييم الدكتور</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- featured_candidates_area_end  -->
+
+{% endblock body %}

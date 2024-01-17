@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Doctor,Specialty,Comment
+from django.views import generic
 
-# Create your views here.
+
+class DoctorList(generic.ListView):
+    model = Doctor
