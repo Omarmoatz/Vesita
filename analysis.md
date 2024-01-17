@@ -2,7 +2,14 @@ doctor:
     -name
     -image
     -loction
-    -specialty[جلديه-اسنان-نفسي-اطفال_حديثي_الولاده-]
+    -specialty *
+    -subtitle
+    -description
+    -place_photos *
     -price_of_appintment
     -phone_num
     -work_hours
+    -comments *
+        -name
+        -content
+        -created_at
