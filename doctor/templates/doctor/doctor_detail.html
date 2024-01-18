@@ -1,74 +1,11 @@
 {% extends 'base.html' %}
-
-{% block body %}
-    
-
-    
+{% load static %}
+{% block body %} 
 <div dir="rtl">
     <!-- Search -->
     <div class="catagory_area ">
-<div class="container " style="margin-top: 10rem">
-            <div class=" single_text">
-                <h2>احجز مع
-                    أفضل دكتور في مصر</h3>
-                <h3>احجز اونلاين او كلم  ١٧٧٥۸</h4>
-                <h4>١٦٠٠٠ دكتور -٤٠٠٠ استاذ واستشاري - اكثر من ۲٠ تخصص</h5>
-                <br>
-            </div>
-            <form  method="GET" action="">
-            <div class="row cat_search" >
+        <div class="container " style="margin-top: 10rem">
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="single_input">
-                        <input type="text" placeholder="إسم الدكتور" >
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="single_input">
-                        <select class="wide" >
-                            <option value="" >الموقع</option>
-                            <option value="المنصوره">المنصوره</option>
-                            <option value="الدقي">الدقي</option>
-                            <option value="4">Sylet</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="single_input">
-                        <select class="wide" >
-                            <option value="">التخصص</option>
-                            <option value="جلدية">جلدية</option>
-                            <option value="اسنان">اسنان</option>
-                            <option value="نفسي">نفسي</option>
-                            <option value="اطفال">اطفال حديثي الولادة</option>
-                            <option value="مخ">مخ واعصاب</option>
-                            <option value="عظام">عظام</option>
-                            <option value="نساء">نساء وتوليد</option>
-                            <option value="انف">انف واذن وحنجرة</option>
-                            <option value="قلب">قلب واوعية دموية</option>
-                            <option value="امراض">امراض دم</option>
-                            <option value="اورام">اورام</option>
-                            <option value="باطنه">باطنه</option>
-                            <option value="تخسيس">تخسيس وتغذية</option>
-                            <option value="جاطفال">جراحة اطفال</option>
-                            <option value="جاورام">جراحة اورام</option>
-                            <option value="جاوعيه">جراحة اوعية دموية</option>
-                            <option value="جتجميل">جراحة تجميل</option>
-                            <option value="سمنه">جراحه سمنة ومناظير </option>
-                            </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-12">
-                    <div class="job_btn">
-                        <input type="submit" class="boxed-btn3" value="ابحث هنا">
-                    </div>
-                </div>
-
-            </div>
-            </form> 
         </div>
     </div>
     <!-- endsearch -->
@@ -130,75 +67,64 @@
                 </div>
                 <div class="single_wrap">
                     <h4>صور العيادة :</h4>
-                            <img class="image_clinic" src="img/candiateds/2.png" alt="" >
-                            <img class="image_clinic" src="img/candiateds/2.png" alt="" >
-                            <img class="image_clinic" src="img/candiateds/2.png" alt="" >
-                    
+                        {% for item in doctor.clinic_doctor.all  %}
+                            <img class="image_clinic" style="width: 130px;height: 122px;" src="{{item.image.url}}" alt="image">
+                        {% endfor %}
 
 
                 </div>
             </div>
 
     <!-- comments -->
-    <div class="section-row">
-        <div class="section-title">
-            <h2 style="color: brown;">التعليقات (  )</h2>
-        </div>
-
-        <div class="post-comments" >
-
-            <!-- comment -->
-            <div class="media">
-                <div class="media-left">
-                    <img class="media-object" src="img/avatar.png" alt="">
-                </div>
-                <div class="media-body " >
-                    <div class="media-heading">
-                        <h4>اسم الكاتب</h4>
-                        <span class="time">تم التعليق في </span>
-                    </div>
-                    <p>الكومنتات</p>
-                    <a href="#" class="reply">الردود ..</a>
-
-                    <!-- comment -->
-                    <div class="media">
-                        <div class="media-left">
-                            <img class="media-object" src="" alt="">
-                        </div>
-                        <div class="media-body">
-                            <div class="media-heading">
-                                <h4>محمود عبد الرؤف صبره</h4>
-                                <span class="time">تم التعليق فى </span>
-                            </div>
-                            <p>شكرا جدا واتمنى ان تتصفح باقي المواضيع .....</p>
-                        </div>
-                    </div>
-                    <!-- /comment -->
-                </div>
+    {% for item in doctor.comment_doctor.all %}      
+        <div class="section-row">
+            <div class="section-title">
+                <h2 style="color: brown;">التعليقات ( {{item|length}} )</h2>
             </div>
-            <!-- /comment -->
 
+            <div class="post-comments" >
+
+                <!-- comment -->
+                <div class="media">
+                    <div class="media-left">
+                        {% if item.user.Profile.image %}
+                            <img class="media-object" src="{{item.user.Profile.image.url}}" alt="comment">
+                        {% else %}
+                            <img class="ml-4" src="{% static 'images/user.png' %}" alt="comment">
+                        {% endif %}
+                        
+                    </div>
+                    <div class="media-body " >
+                        <div class="media-heading">
+                            <h4>{{item}}</h4>
+                            <span class="time">{{item.created_at}}تم التعليق في </span>
+                        </div>
+                        <p>{{item.content}}</p>
+                        <a href="#" class="reply">الردود ..</a>
+                    </div>
+                </div>
+                <!-- /comment -->
+            </div>
+        </div>
+    {% endfor %}
+    {% if not doctor.comment_doctor.all %} 
+        <div class="section-row">
             <div class="media-heading">
                 <h4>لا يوجد تعليقات حتى الأن ..</h4>
             </div>
-
         </div>
-    </div>
+    {% endif %}
     <!-- /comments -->                    
     <div class="apply_job_form white-bg">
         <h4>إترك تعليقك</h4>
-        <form method="POST" >
 
+        <form method="POST" >
+            {% csrf_token %}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="input_field">
                         <input type="text"  placeholder=" الإسم">
                         
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input_field">
-                        <input type="text"  placeholder=" الإيميل">
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -213,6 +139,7 @@
                 </div>
             </div>
         </form>
+
     </div>
         </div>
         <div class="col-lg-4">
@@ -222,10 +149,9 @@
                 </div>
                 <div class="job_content">
                     <ul>
-                        <li>  انضم إلينا : <span style="color: blue;"></span></li>
-                        <li> الكشف : <span style="color: blue;"> جنية</span></li>
-                        <li> رقم الهاتف  : <span style="color: blue;"></span></li>
-                        <li>عدد ساعات العمل : <span style="color: blue;"> ساعات</span></li>
+                        <li> الكشف : <span style="color: blue;">{{doctor.price_of_appintment}} جنية</span></li>
+                        <li> رقم الهاتف  : <span style="color: blue;">{{doctor.phone_num}}</span></li>
+                        <li>عدد ساعات العمل : <span style="color: blue;">{{doctor.work_hours}} ساعه</span></li>
                     </ul>
                     
                 </div>
@@ -242,29 +168,6 @@
             <div class="job_location_wrap">
                 <div class="job_lok_inner">
                     <div id="map" style="height: 200px;"></div>
-                    <script>
-                        function initMap() {
-                        var uluru = {lat: -25.363, lng: 131.044};
-                        var grayStyles = [
-                            {
-                            featureType: "all",
-                            stylers: [
-                                { saturation: -90 },
-                                { lightness: 50 }
-                            ]
-                            },
-                            {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
-                        ];
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            center: {lat: -31.197, lng: 150.744},
-                            zoom: 9,
-                            styles: grayStyles,
-                            scrollwheel:  false
-                        });
-                        }
-                        
-                    </script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
                     
                     </div>
             </div>

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #_ 3rd part apps _
-
+    'phonenumber_field',
 
     #_ my apps _
     'doctor',

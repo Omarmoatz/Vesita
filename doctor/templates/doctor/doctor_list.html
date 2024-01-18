@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="jobs_right">
                                     <div class="apply_now">
-                                        <a class="boxed-btn3" href="">حجز كشف</a>
+                                        <a class="boxed-btn3" href="{% url 'doctor:doctor_detail' item.slug %}">تفاصيل اكتر</a>
                                     </div>
 
                                     <div class="rating">
@@ -125,32 +125,31 @@
             </div>
             <div class="row">
                 {% for item in doctor_list %}
-                <div class="col-lg-12">
-                    <div class="candidate_active owl-carousel">
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img class="img-circle " src="{{item.image.url}}" alt="" >
-                                
-                            </div>
-                            <a href="" ><h4 >{{item}}</h4></a>
-                            <p>  {{item.specialty}}</p>
-                            <div class="best-rating">
-                                <div class="text-warning">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        
+                    <div class="col-lg-12">
+                        <div class="candidate_active owl-carousel">
+                            <div class="single_candidates text-center">
+                                <div class="thumb">
+                                    <img class="img-circle " src="{{item.image.url}}" alt="img" >
+                                    
                                 </div>
-                                <div class="best-rating" >
-                                    <h5>تقييم الدكتور</h5>
+                                <a href="{% url 'doctor:doctor_detail' item.slug %}" ><h4 >{{item}}</h4></a>
+                                <p>  {{item.specialty}}</p>
+                                <div class="best-rating">
+                                    <div class="text-warning">
+                                        <i class="{% if item.doctor_review > 0 %}fa fa-star{% endif %}"></i>
+                                        <i class="{% if item.doctor_review > 1 %}fa fa-star{% endif %}"></i>
+                                        <i class="{% if item.doctor_review > 2 %}fa fa-star{% endif %}"></i>
+                                        <i class="{% if item.doctor_review > 3 %}fa fa-star{% endif %}"></i>
+                                        <i class="{% if item.doctor_review > 4 %}fa fa-star{% endif %}"></i>   
+                                    </div>
+                                    <div class="best-rating" >
+                                        <h5>تقييم الدكتور</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
