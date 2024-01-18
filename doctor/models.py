@@ -27,6 +27,14 @@ class Doctor(models.Model):
     class Meta:
         ordering = ['-id']
 
+class ClinicPhoto(models.Model):
+    doctor = models.ForeignKey(Doctor, related_name="clinic_doctor", on_delete=models.CASCADE)
+    image = models.ImageField( upload_to='clinic_img/')
+
+    def __str__(self):
+        return str(self.doctor)
+
+
 class Specialty(models.Model):
     name = models.CharField( max_length=100)
 

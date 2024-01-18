@@ -5,3 +5,9 @@ from django.views import generic
 
 class DoctorList(generic.ListView):
     model = Doctor
+
+
+
+class DoctorDetail(generic.DetailView):
+    model = Doctor
+
