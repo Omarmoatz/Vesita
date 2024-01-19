@@ -60,7 +60,7 @@ class Examination(models.Model):
     name = models.CharField( max_length=50)
     age = models.PositiveIntegerField(blank=True, null=True)
     gender = models.CharField( max_length=50, choices=GENDER_CHOICE)
-    phone = PhoneNumberField()
+    phone = models.CharField( max_length=50)
     email = models.EmailField( max_length=254,blank=True, null=True)
     symptoms = models.TextField(max_length=5000)
     examination_date = models.DateTimeField(default=timezone.now)

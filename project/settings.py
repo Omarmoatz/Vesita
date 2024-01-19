@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #_ 3rd part apps _
     'phonenumber_field',
+    "django_bootstrap5",
 
     #_ my apps _
     'doctor',

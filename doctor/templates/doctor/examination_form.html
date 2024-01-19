@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
-<!-- {% load bootstrap5 %} -->
+{% load django_bootstrap5 %}
 {% block body %}
-    <form class="mt-200" method="post">
-        <!-- {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
-            <button type="submit" class="btn btn-primary">Post</button>
-        {% endbuttons %} -->
-    </form>
+<div dir="rtl">
+    <div class="container">
+        <div class="signup">
+        <div class="col-md-9" >
+            <form method="POST" enctype="multipart/form-data">
+                <h3 class="auth-header">حجز كشف جديد</h3>
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="OK" %}
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
 {% endblock body %}
     
