@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Doctor,Specialty,Comment,ClinicPhoto
+from .models import Doctor,Specialty,Comment,ClinicPhoto,Examination
 
 class clinicTabular(admin.TabularInline):
     model = ClinicPhoto
@@ -11,3 +11,4 @@ class DoctorAdmin(admin.ModelAdmin):
 admin.site.register(Doctor,DoctorAdmin)
 admin.site.register(Specialty)
 admin.site.register(Comment)
+admin.site.register(Examination)

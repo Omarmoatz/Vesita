@@ -58,9 +58,9 @@ GENDER_CHOICE = (
 )
 class Examination(models.Model):
     name = models.CharField( max_length=50)
-    age = models.PositiveIntegerField()
+    age = models.PositiveIntegerField(blank=True, null=True)
     gender = models.CharField( max_length=50, choices=GENDER_CHOICE)
     phone = PhoneNumberField()
-    email = models.EmailField( max_length=254)
+    email = models.EmailField( max_length=254,blank=True, null=True)
     symptoms = models.TextField(max_length=5000)
     examination_date = models.DateTimeField(default=timezone.now)
