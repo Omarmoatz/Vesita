@@ -1,2 +1,2 @@
 # Vesita
-Website for reserving doctors for help 
+ is a website designed for reserving doctors to seek help. The website is built using a stack of technologies including JavaScript, CSS, HTML, Python, Django, Django Rest Framework, AJAX, and Postman. It provides a platform for users to reserve appointments with doctors for medical assistance. The website offers features such as doctor profiles, appointment scheduling, and a user-friendly interface for seamless interaction. With its various technologies and functionalities, Vesita aims to facilitate the process of booking doctor appointments and connecting patients with healthcare professionals.
